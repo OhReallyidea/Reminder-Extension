@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <h1>📞 Sales Follow-Up</h1>
+
+    <!-- Input Form -->
+    <div class="form-group">
+      <input type="text" id="customerName" placeholder="Customer Name" />
+      <input type="text" id="customerPhone" placeholder="Phone Number" />
+      <input type="date" id="followUpDate" />
+      <button id="saveBtn">➕ Add Reminder</button>
+    </div>
+
+    <hr />
+
+    <!-- Reminder List -->
+    <h2>Upcoming Follow-Ups</h2>
+    <div id="reminderList"></div>
+
+    <!-- Clear All Button -->
+    <button id="clearBtn" class="danger">🗑️ Clear All</button>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
