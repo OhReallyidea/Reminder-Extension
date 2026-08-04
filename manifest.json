@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "Sales Follow-Up Reminder",
+  "version": "1.0",
+  "description": "Track customer follow-ups and never miss a sales opportunity",
+  "permissions": ["storage"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "128": "icon.png"
+    }
+  },
+  "icons": {
+    "128": "icon.png"
+  }
+}
