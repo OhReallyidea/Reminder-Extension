@@ -5,12 +5,6 @@
   "description": "Track customer follow-ups and never miss a sales opportunity",
   "permissions": ["storage"],
   "action": {
-    "default_popup": "popup.html",
-    "default_icon": {
-      "128": "icon.png"
-    }
-  },
-  "icons": {
-    "128": "icon.png"
+    "default_popup": "popup.html"
   }
 }
