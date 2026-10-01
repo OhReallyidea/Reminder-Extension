@@ -1,31 +1,430 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Sales Follow-Up</title>
+
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <div id="app">
-    <h1>📞 Sales Follow-Up</h1>
 
-    <!-- Input Form -->
-    <div class="form-group">
-      <input type="text" id="customerName" placeholder="Customer Name" />
-      <input type="text" id="customerPhone" placeholder="Phone Number" />
-      <input type="date" id="followUpDate" />
-      <button id="saveBtn">➕ Add Reminder</button>
+<body>
+
+  <div id="app">
+
+    <!-- =========================================
+         HEADER
+    ========================================== -->
+
+    <header class="app-header">
+
+      <div class="header-icon">
+        📞
+      </div>
+
+      <div class="header-content">
+        <h1>Sales Follow-Up</h1>
+        <p>Manage your merchant pipeline</p>
+      </div>
+
+      <div class="header-count">
+        <strong id="reminderCount">0</strong>
+        <span>Due</span>
+      </div>
+
+    </header>
+
+
+    <!-- =========================================
+         TODAY DASHBOARD
+    ========================================== -->
+
+    <section class="dashboard">
+
+      <div class="dashboard-title">
+        <div>
+          <span class="eyebrow">TODAY</span>
+          <h2 id="todayDate">Today's Follow-Ups</h2>
+        </div>
+
+        <div class="today-icon">
+          📅
+        </div>
+      </div>
+
+
+      <div class="stats-grid">
+
+        <div class="stat-card">
+          <span class="stat-icon blue">📋</span>
+
+          <div>
+            <strong id="todayCount">0</strong>
+            <span>Today</span>
+          </div>
+        </div>
+
+
+        <div class="stat-card">
+          <span class="stat-icon orange">🔥</span>
+
+          <div>
+            <strong id="hotCount">0</strong>
+            <span>Hot Leads</span>
+          </div>
+        </div>
+
+
+        <div class="stat-card">
+          <span class="stat-icon red">⏰</span>
+
+          <div>
+            <strong id="overdueCount">0</strong>
+            <span>Overdue</span>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================
+         REMINDER ALERT
+    ========================================== -->
+
+    <div id="reminderAlert" class="reminder-alert hidden">
+
+      <div class="alert-icon">
+        🔔
+      </div>
+
+      <div class="alert-content">
+
+        <span class="alert-label">
+          FOLLOW-UP DUE
+        </span>
+
+        <h3 id="alertCustomerName">
+          Merchant
+        </h3>
+
+        <p id="alertReminderText">
+          Reminder is due now.
+        </p>
+
+      </div>
+
+      <button
+        id="closeAlertBtn"
+        class="alert-close">
+        ×
+      </button>
+
     </div>
 
-    <hr />
 
-    <!-- Reminder List -->
-    <h2>Upcoming Follow-Ups</h2>
-    <div id="reminderList"></div>
+    <!-- =========================================
+         ADD MERCHANT
+    ========================================== -->
 
-    <!-- Clear All Button -->
-    <button id="clearBtn" class="danger">🗑️ Clear All</button>
+    <section class="form-card">
+
+      <div class="section-heading">
+
+        <div>
+          <h2>New Follow-Up</h2>
+          <p>Add a merchant reminder</p>
+        </div>
+
+        <span class="add-icon">
+          ＋
+        </span>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <!-- Merchant Name -->
+
+        <div class="input-wrapper">
+
+          <label>
+            Merchant Name
+          </label>
+
+          <input
+            type="text"
+            id="customerName"
+            placeholder="e.g. ABC Restaurant"
+          >
+
+        </div>
+
+
+        <!-- Phone -->
+
+        <div class="input-wrapper">
+
+          <label>
+            Phone Number
+          </label>
+
+          <input
+            type="tel"
+            id="customerPhone"
+            placeholder="e.g. 012-345 6789"
+          >
+
+        </div>
+
+
+        <!-- Date / Time -->
+
+        <div class="form-row">
+
+          <div class="input-wrapper">
+
+            <label>
+              Follow-Up Date
+            </label>
+
+            <input
+              type="date"
+              id="followUpDate"
+            >
+
+          </div>
+
+
+          <div class="input-wrapper">
+
+            <label>
+              Reminder Time
+            </label>
+
+            <input
+              type="time"
+              id="followUpTime"
+            >
+
+          </div>
+
+        </div>
+
+
+        <!-- Priority -->
+
+        <div class="input-wrapper">
+
+          <label>
+            Lead Priority
+          </label>
+
+          <div class="priority-selector">
+
+            <label class="priority-option hot">
+
+              <input
+                type="radio"
+                name="priority"
+                value="Hot"
+                checked
+              >
+
+              <span>
+                🔥 Hot
+              </span>
+
+            </label>
+
+
+            <label class="priority-option warm">
+
+              <input
+                type="radio"
+                name="priority"
+                value="Warm"
+              >
+
+              <span>
+                🟠 Warm
+              </span>
+
+            </label>
+
+
+            <label class="priority-option cold">
+
+              <input
+                type="radio"
+                name="priority"
+                value="Cold"
+              >
+
+              <span>
+                🔵 Cold
+              </span>
+
+            </label>
+
+          </div>
+
+        </div>
+
+
+        <!-- Notes -->
+
+        <div class="input-wrapper">
+
+          <label>
+            Follow-Up Notes
+          </label>
+
+          <textarea
+            id="followUpNote"
+            rows="2"
+            placeholder="What do you need to follow up about?"
+          ></textarea>
+
+        </div>
+
+
+        <button
+          id="saveBtn"
+          class="primary-btn">
+
+          <span>＋</span>
+
+          Add Follow-Up
+
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================
+         SEARCH + FILTER
+    ========================================== -->
+
+    <section class="list-section">
+
+      <div class="section-heading">
+
+        <div>
+          <h2>Merchant Follow-Ups</h2>
+          <p id="listSubtitle">
+            Manage your active follow-ups
+          </p>
+        </div>
+
+        <span
+          id="totalReminders"
+          class="total-badge">
+          0
+        </span>
+
+      </div>
+
+
+      <div class="search-row">
+
+        <div class="search-box">
+
+          <span>🔎</span>
+
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Search merchant..."
+          >
+
+          <button
+            id="clearSearch"
+            class="search-clear">
+            ×
+          </button>
+
+        </div>
+
+
+        <select id="priorityFilter">
+
+          <option value="all">
+            All
+          </option>
+
+          <option value="Hot">
+            🔥 Hot
+          </option>
+
+          <option value="Warm">
+            🟠 Warm
+          </option>
+
+          <option value="Cold">
+            🔵 Cold
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <!-- Merchant List -->
+
+      <div id="reminderList"></div>
+
+
+      <!-- Empty -->
+
+      <div
+        id="emptyState"
+        class="empty-state">
+
+        <div class="empty-icon">
+          📋
+        </div>
+
+        <h3>
+          No follow-ups found
+        </h3>
+
+        <p>
+          Add a merchant above or change your search.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================== -->
+
+    <footer>
+
+      <button
+        id="clearBtn"
+        class="clear-btn">
+
+        🗑 Clear All
+
+      </button>
+
+    </footer>
+
   </div>
 
+
   <script src="popup.js"></script>
+
 </body>
+
 </html>
