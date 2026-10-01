@@ -3,9 +3,9 @@
 
   "name": "Sales Follow-Up Reminder",
 
-  "version": "2.0",
+  "version": "3.0",
 
-  "description": "Track customer follow-ups and never miss a sales opportunity",
+  "description": "Manage merchant follow-ups and never miss a sales deadline.",
 
   "permissions": [
     "storage",
@@ -20,5 +20,9 @@
 
   "background": {
     "service_worker": "background.js"
+  },
+
+  "icons": {
+    "128": "icon128.png"
   }
 }
